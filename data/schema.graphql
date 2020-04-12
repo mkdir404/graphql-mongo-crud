@@ -1,0 +1,58 @@
+ #este comemnatio lo toma la doc de graphql
+        """ Aqui vamos encontradno todo lo necesario pal graphql """
+        
+        type Query {
+            getCliente(id:ID!) : Cliente
+            getClientes (limite:Int): [Cliente]
+        }
+
+        type Mutation {
+            crearCliente(input:ClienteInput) : Cliente
+            actualizarCliente(input:ClienteInput): Cliente
+            eliminarCliente (id:ID!) : String
+        }
+
+        enum TipoCliente {
+            BASICO
+            PREMIUM
+        }
+
+        input ClienteInput {
+            id : ID
+            nombre : String
+            apellido : String
+            empresa : String
+            emails : [EmailInput]
+            edad : Int
+            tipo : TipoCliente
+            pedidos : [PedidoInput]
+        }
+
+        input EmailInput {
+            email : String
+        }
+
+        input PedidoInput {
+            producto  : String!
+            precio : Int
+        }
+
+        type Cliente {
+            id : ID
+            nombre : String
+            apellido : String
+            empresa : String
+            emails : [Email]
+            edad : Int
+            tipo : TipoCliente
+            pedidos : [Pedido]
+        }
+        
+        type Email {
+            email : String
+       }
+       
+       type Pedido {
+           producto  : String!
+           precio : Int
+       }
